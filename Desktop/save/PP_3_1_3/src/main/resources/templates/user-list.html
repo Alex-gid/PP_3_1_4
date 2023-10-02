@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <div th:switch="${users}">
+        <h2 th:case="null">No users found!</h2>
+        <div th:case="*">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Age</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.getId()}"></td>
+                    <td th:text="${user.getFirstname()}"></td>
+                    <td th:text="${user.getLastname()}"></td>
+                    <td th:text="${user.getEmail()}"></td>
+                    <td th:text="${user.getPassword()}"></td>
+                    <td th:text="${user.getAge()}"></td>
+                    <td th:text="${user.getRoles()}"></td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" th:href="@{/admin/user-update/{id}(id=${user.id})}">Edit</a>
+                        <a class="btn btn-sm btn-danger" th:href="@{/admin/user-delete/{id}(id=${user.id})}">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><a class="btn btn-success" href="/admin/user-create">Create User</a></p>
+    </div>
+    <a class="btn btn-danger" th:href="@{/logout}">Logout</a>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

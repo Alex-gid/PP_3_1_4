@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h2 th:text="'Welcome, ' + ${user.firstname} + '!'">User, welcome!</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>First name:</strong> <span th:text="${user.firstname}"></span></p>
+            <p><strong>Last name:</strong> <span th:text="${user.lastname}"></span></p>
+            <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+            <p><strong>Password:</strong> <span th:text="${user.password}"></span></p>
+            <p><strong>Age:</strong> <span th:text="${user.age}"></span></p>
+            <p><strong>Roles:</strong> <span th:text="${user.roles}"></span></p>
+        </div>
+        <div class="card-footer">
+            <div sec:authorize="isAuthenticated()">
+                <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
